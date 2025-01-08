@@ -1,12 +1,12 @@
 import React from "react";
 
-import CombinedView from "./components/CombineView";
+import Calendar from "./components/Calendar";
 
 const App: React.FC = () => {
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>My Calendar</h1>
-      <CombinedView />
+      <Calendar />
     </div>
   );
 };
