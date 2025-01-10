@@ -5,7 +5,7 @@ const TimeAxis: React.FC = () => {
   const hours = Array.from({ length: 24 }).map((_, hour) => hour);
 
   return (
-    <div className="time-block-container">
+    <div className="h-full w-full bg-gray-100 py-4 time-block-container ">
       {hours.map((hour) => (
         <div className="time-zone" key={hour}>
           <div className="time-number">

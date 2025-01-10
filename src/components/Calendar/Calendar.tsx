@@ -41,7 +41,7 @@ const CalendarView: React.FC = () => {
 
   return (
     <div>
-      <div className="calendar-header">
+      <div className="calendar-header h-full w-full bg-white p-4">
         <button onClick={handlePrevMonth}>{"<"}</button>
         <span>
           {currentMonth.toLocaleDateString("en-US", {
