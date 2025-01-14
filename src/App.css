@@ -1,0 +1,47 @@
+#root {
+  max-width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-grow: 1;
+  height: calc(100vh - 4rem); /* 如果顶部有额外的 padding，可减去对应高度 */
+
+  padding: 0;
+}
+
+.calendar-panel {
+  flex: 0 0 300px;
+  float: left;
+  min-width: 300px;
+  overflow-y: auto;
+  margin-right: 20px;
+  background-color: #f9f9f9;
+  padding: 20px;
+}
+
+.time-axis-panel {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 10px;
+  flex-grow: 1;
+  min-width: 500px; /* 防止过度压缩 */
+  max-width: 100%; /* 避免溢出 */
+}
