@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import "./timer.css";
 
 const Timer = () => {
   const [time, setTime] = useState(0);
@@ -52,13 +53,13 @@ const Timer = () => {
   };
 
   return (
-    <div className="card bg-base-100 shadow-xl w-full max-w-2xl">
+    <div className="card bg-base-100 w-full max-w-2xl">
       <div className="card-body">
         <div className="flex flex-col items-center gap-6">
           {/* Main Timer Display */}
-          <div className="stat bg-base-200 rounded-box w-full">
-            <div className="stat-title text-center">Current Time</div>
-            <div className="stat-value text-6xl font-mono text-center text-primary">
+          <div className="stat rounded-box w-full">
+            <div className="stat-title text-center">Deep Work Time</div>
+            <div className="stat-value text-4xl font-mono text-center text-primary">
               {formatTime(time)}
             </div>
           </div>
@@ -66,20 +67,11 @@ const Timer = () => {
           {/* Control Buttons */}
           <div className="flex gap-4">
             <button
-              onClick={startTimer}
-              disabled={isRunning}
-              className="btn btn-primary btn-lg"
+              onClick={isRunning? pauseTimer : startTimer}
+              className={`fas ${isRunning ? "fa-pause" : "fa-play"} mr-2`}
             >
-              <i className="fas fa-play mr-2"></i>
-              Start
-            </button>
-            <button
-              onClick={pauseTimer}
-              disabled={!isRunning}
-              className="btn btn-secondary btn-lg"
-            >
-              <i className="fas fa-pause mr-2"></i>
-              Pause
+              <i className={`fas ${isRunning ? "fa-pause" : "fa-play"} mr-2`}></i>
+              {isRunning? 'Pause' : 'Start'}
             </button>
           </div>
 

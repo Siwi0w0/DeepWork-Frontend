@@ -3,15 +3,13 @@ import "./App.css";
 
 import Calendar from "./components/Calendar/Calendar";
 import TimeAxis from "./components/timeAxis/TimeAxis";
-import Timer from './components/Timer'
+import Timer from './components/Timer/Timer'
 
 const App: React.FC = () => {
   return (
     <div className="container">
       <div className="calendar-panel">
         <Calendar />
-      </div>
-      <div className='timer'>
         <Timer />
       </div>
       <div className="time-axis-panel">
