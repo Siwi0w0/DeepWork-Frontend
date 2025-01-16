@@ -47,7 +47,6 @@
   display: flex;
   width: 100%;
   overflow: hidden;
-  display: flex;
   flex-grow: 1;
   height: calc(100vh - 4rem); /* 如果顶部有额外的 padding，可减去对应高度 */
 
@@ -56,12 +55,13 @@
 
 .calendar-panel {
   flex: 0 0 300px;
-  float: left;
+  /* float: left; */
   min-width: 300px;
   overflow-y: auto;
   margin-right: 20px;
   background-color: #f9f9f9;
   padding: 20px;
+  align-items: flex-start;
 }
 
 .time-axis-panel {
