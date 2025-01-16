@@ -17,11 +17,11 @@
 
 .container {
   display: flex;
+  flex-direction: row;
   width: 100%;
   overflow: hidden;
   flex-grow: 1;
-  height: calc(100vh - 4rem); /* 如果顶部有额外的 padding，可减去对应高度 */
-
+  height: calc(100vh - 4rem);
   padding: 0;
 }
 
@@ -42,6 +42,6 @@
   overflow-y: auto;
   padding: 10px;
   flex-grow: 1;
-  min-width: 500px; /* 防止过度压缩 */
-  max-width: 100%; /* 避免溢出 */
+  min-width: 500px;
+  max-width: 100%;
 }
