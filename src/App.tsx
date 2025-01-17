@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import TimeZone from "./pages/TimeZone";
+import TimeZone from "./pages/Home";
 
 const App: React.FC = () => {
   const [users, setUsers] = useState<
