@@ -1,10 +1,14 @@
 import React from "react";
-import Profile from "../components/profile/ProfileContent";
+import ProfileContent from "../components/profile/ProfileContent";
+import Navbar from "../components/navbar/Navbar";
 
 const ProfilePage: React.FC = () => {
   return (
     <div>
-      <Profile />
+      <div className="navbar">
+        <Navbar />
+      </div>
+      <ProfileContent />
     </div>
   );
 };

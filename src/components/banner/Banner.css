@@ -49,7 +49,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 2rem;
-  height: calc(100vh - 70px); /* 剩余屏幕空间，减去导航栏高度 */
+  height: calc(100vh - 70px);
 }
 
 .content-left {

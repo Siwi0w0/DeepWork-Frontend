@@ -1,48 +1,44 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAvatar } from "../../content/AvatarContext";
 import "./ProfileContent.css";
 
 const ProfileContent: React.FC = () => {
-  const [avatar, setAvatar] = useState<string | null>(null);
   const [username, setUsername] = useState<string>("");
   const [isSaved, setIsSaved] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  // Load saved data from localStorage
+  const { avatarUrl, setAvatarUrl } = useAvatar();
+
   useEffect(() => {
-    const savedAvatar = localStorage.getItem("avatar");
     const savedUsername = localStorage.getItem("username");
-    if (savedAvatar) setAvatar(savedAvatar);
     if (savedUsername) setUsername(savedUsername);
   }, []);
 
-  // Handle avatar upload
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setAvatar(reader.result as string);
-        localStorage.setItem("avatar", reader.result as string);
+        const newAvatarUrl = reader.result as string;
+        setAvatarUrl(newAvatarUrl);
+        localStorage.setItem("avatar", newAvatarUrl);
       };
       reader.readAsDataURL(file);
     }
   };
 
-  // Handle username change
   const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
   };
 
-  // Save profile details
   const handleSaveProfile = () => {
     if (username) {
       localStorage.setItem("username", username);
-      setIsSaved(true); // Mark the profile as saved
+      setIsSaved(true);
     }
   };
 
-  // Navigate to home page
   const handleNavigateHome = () => {
     navigate("/home");
   };
@@ -53,8 +49,8 @@ const ProfileContent: React.FC = () => {
 
       <div className="avatar-section">
         <div className="avatar-preview">
-          {avatar ? (
-            <img src={avatar} alt="Avatar" className="avatar-img" />
+          {avatarUrl ? (
+            <img src={avatarUrl} alt="Avatar" className="avatar-img" />
           ) : (
             <span className="avatar-placeholder">No avatar</span>
           )}
@@ -86,7 +82,7 @@ const ProfileContent: React.FC = () => {
         onClick={isSaved ? handleNavigateHome : handleSaveProfile}
         className="save-btn"
       >
-        {isSaved ? "HomePage" : "Save Profile"}
+        {isSaved ? "Go to Home" : "Save Profile"}
       </button>
     </div>
   );

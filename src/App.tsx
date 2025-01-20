@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Banner from "./pages/Banner";
 import ProfilePage from "./pages/Profile";
+import { AvatarProvider } from "./content/AvatarContext";
 
 const App: React.FC = () => {
   const [users, setUsers] = useState<
@@ -31,18 +32,20 @@ const App: React.FC = () => {
   };
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Banner />} />
-        <Route
-          path="/register"
-          element={<Register onRegister={handleRegister} />}
-        />
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/profile" element={<ProfilePage />} />
-      </Routes>
-    </Router>
+    <AvatarProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Banner />} />
+          <Route
+            path="/register"
+            element={<Register onRegister={handleRegister} />}
+          />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/profile" element={<ProfilePage />} />
+        </Routes>
+      </Router>
+    </AvatarProvider>
   );
 };
 

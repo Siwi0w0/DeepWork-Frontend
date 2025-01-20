@@ -1,10 +1,11 @@
 import "./navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useAvatar } from "../../content/AvatarContext";
 
 function Navbar() {
   const navigate = useNavigate();
-
+  const { avatarUrl } = useAvatar();
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     alert("You have been logged out.");
@@ -27,11 +28,17 @@ function Navbar() {
     localStorage.setItem("isFirstLogin", "false"); // Set it to false after login
   };
 
+  const goToHome = () => {
+    navigate("/home");
+  };
+
   return (
     <>
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">Deep. Work.</a>
+          <button onClick={goToHome} className="btn btn-ghost text-xl">
+            Deep Work
+          </button>
         </div>
         <div className="flex-none">
           <div className="dropdown dropdown-end">
@@ -43,7 +50,10 @@ function Navbar() {
               <div className="w-10 rounded-full">
                 <img
                   alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  src={
+                    avatarUrl ||
+                    "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  }
                 />
               </div>
             </div>
