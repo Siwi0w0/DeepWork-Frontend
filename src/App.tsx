@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import Banner from "./pages/Banner";
 
 const App: React.FC = () => {
   const [users, setUsers] = useState<
@@ -31,12 +32,13 @@ const App: React.FC = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Banner />} />
         <Route
           path="/register"
           element={<Register onRegister={handleRegister} />}
         />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </Router>
   );
