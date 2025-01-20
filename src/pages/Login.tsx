@@ -11,8 +11,8 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const [error, setError] = useState("");
 
   const handleLogin = (email: string, password: string) => {
-    const success = onLogin(email, password);
-    if (success) {
+    if (onLogin(email, password)) {
+      localStorage.setItem("isLoggedIn", "true");
       navigate("/home");
     } else {
       setError("Invalid email or password");

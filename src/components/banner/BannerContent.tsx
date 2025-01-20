@@ -1,5 +1,6 @@
 import React from "react";
 import "./Banner.css";
+import { Link } from "react-router-dom";
 
 const BannerContent: React.FC = () => {
   return (
@@ -11,11 +12,16 @@ const BannerContent: React.FC = () => {
           Whether you're managing tasks or exploring new opportunities, we've
           got you covered.
         </p>
-        <button className="btn btn-primary">Free Sign Up</button>
+        <Link
+          to="/register"
+          className="inline-block px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md transition-colors duration-300 ease-in-out"
+        >
+          Free Sign Up
+        </Link>
       </div>
       <div className="content-right">
         <img
-          src="https://via.placeholder.com/400"
+          src="/public/images/deepWork.webp"
           alt="Productivity Illustration"
         />
       </div>
