@@ -1,5 +1,6 @@
 import "./navbar.css";
 import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -8,6 +9,22 @@ function Navbar() {
     localStorage.removeItem("authToken");
     alert("You have been logged out.");
     navigate("/");
+  };
+
+  const [isFirstLogin, setIsFirstLogin] = useState<boolean>(false);
+
+  useEffect(() => {
+    // Check if it's the user's first login
+    const firstLogin = localStorage.getItem("isFirstLogin");
+
+    if (firstLogin === "true") {
+      setIsFirstLogin(true); // If it's the first login, show the "New" badge
+    }
+  }, []);
+
+  const handleLogin = () => {
+    // This can be triggered after the user logs in for the first time
+    localStorage.setItem("isFirstLogin", "false"); // Set it to false after login
   };
 
   return (
@@ -35,9 +52,13 @@ function Navbar() {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
-                <Link to="/profile" className="justify-between">
+                <Link
+                  to="/profile"
+                  className="justify-between"
+                  onClick={handleLogin}
+                >
                   Profile
-                  <span className="badge">New</span>
+                  {isFirstLogin && <span className="badge">New</span>}
                 </Link>
               </li>
               <li>

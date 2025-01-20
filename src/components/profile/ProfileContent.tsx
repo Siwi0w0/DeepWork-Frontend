@@ -1,77 +1,95 @@
-import React, { useState } from "react";
-import { Input, Button, Upload, message, Avatar } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "./ProfileContent.css";
 
-const ProfilePage: React.FC = () => {
-  const [name, setName] = useState<string>(""); // User's name
-  const [avatar, setAvatar] = useState<string>(""); // User's avatar
+const ProfileContent: React.FC = () => {
+  const [avatar, setAvatar] = useState<string | null>(null);
+  const [username, setUsername] = useState<string>("");
+  const [isSaved, setIsSaved] = useState<boolean>(false);
+  const navigate = useNavigate();
 
-  // Handle name change
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
+  // Load saved data from localStorage
+  useEffect(() => {
+    const savedAvatar = localStorage.getItem("avatar");
+    const savedUsername = localStorage.getItem("username");
+    if (savedAvatar) setAvatar(savedAvatar);
+    if (savedUsername) setUsername(savedUsername);
+  }, []);
 
-  // Handle avatar change/upload
-  const handleAvatarChange = (info: any) => {
-    if (info.file.status === "done") {
-      setAvatar(info.file.response.url); // Assume avatar URL is stored in `response.url` after upload
-      message.success("Avatar updated successfully!");
-    } else if (info.file.status === "error") {
-      message.error("Avatar upload failed!");
+  // Handle avatar upload
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files ? event.target.files[0] : null;
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAvatar(reader.result as string);
+        localStorage.setItem("avatar", reader.result as string);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
-  // Save user profile (this is an example and doesn't actually save data)
+  // Handle username change
+  const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(event.target.value);
+  };
+
+  // Save profile details
   const handleSaveProfile = () => {
-    message.success("Profile updated successfully!");
-    // Here you can send the updated name and avatar to your server for saving
+    if (username) {
+      localStorage.setItem("username", username);
+      setIsSaved(true); // Mark the profile as saved
+    }
+  };
+
+  // Navigate to home page
+  const handleNavigateHome = () => {
+    navigate("/home");
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "600px",
-        margin: "0 auto",
-        padding: "20px",
-        border: "1px solid #ccc",
-        borderRadius: "8px",
-        background: "#fff",
-      }}
-    >
-      <h2>Profile Information</h2>
+    <div className="profile-container">
+      <h2 className="profile-heading">Profile Settings</h2>
 
-      {/* User avatar */}
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <Avatar src={avatar} size={64} style={{ marginRight: "16px" }} />
-        <Upload
-          name="avatar"
-          action="/upload-avatar" // Avatar upload endpoint
-          showUploadList={false}
-          onChange={handleAvatarChange}
-        >
-          <Button icon={<UploadOutlined />}>Upload Avatar</Button>
-        </Upload>
-      </div>
-
-      {/* Edit name */}
-      <div style={{ marginTop: "20px" }}>
-        <h3>Edit Name</h3>
-        <Input
-          value={name}
-          onChange={handleNameChange}
-          placeholder="Enter your name"
-          style={{ width: "100%" }}
+      <div className="avatar-section">
+        <div className="avatar-preview">
+          {avatar ? (
+            <img src={avatar} alt="Avatar" className="avatar-img" />
+          ) : (
+            <span className="avatar-placeholder">No avatar</span>
+          )}
+        </div>
+        <input
+          type="file"
+          id="avatar-upload"
+          accept="image/*"
+          onChange={handleImageChange}
+          className="avatar-upload-input"
         />
       </div>
 
-      {/* Save button */}
-      <div style={{ marginTop: "20px", textAlign: "right" }}>
-        <Button type="primary" onClick={handleSaveProfile}>
-          Save
-        </Button>
+      <div className="username-section">
+        <label htmlFor="username" className="label">
+          Username
+        </label>
+        <input
+          type="text"
+          id="username"
+          value={username}
+          onChange={handleUsernameChange}
+          className="input-field"
+          placeholder="Enter your username"
+        />
       </div>
+
+      <button
+        onClick={isSaved ? handleNavigateHome : handleSaveProfile}
+        className="save-btn"
+      >
+        {isSaved ? "HomePage" : "Save Profile"}
+      </button>
     </div>
   );
 };
 
-export default ProfilePage;
+export default ProfileContent;
