@@ -1,0 +1,37 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.content-container {
+  display: flex;
+  flex: 1;
+}
+
+.calendar-panel {
+  flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+  padding: 16px;
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1); /* 增加分隔感 */
+  border-right: 1px solid #ddd;
+}
+
+.time-axis-panel {
+  flex: 1; /* 填充右侧剩余空间 */
+  overflow-y: auto; /* 支持滚动 */
+  background-color: #ffffff;
+  padding: 20px;
+  box-sizing: border-box; /* 包括内边距 */
+}
+
+.time-slot {
+  height: 60px; /* 每个小时块高度 */
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}

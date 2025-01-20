@@ -1,10 +1,17 @@
-#root {
-  max-width: 100%;
-  height: 100%;
+:root {
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  max-width: 100%;
+  height: 100%;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 .card {
@@ -13,35 +20,4 @@
 
 .read-the-docs {
   color: #888;
-}
-
-.container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  overflow: hidden;
-  flex-grow: 1;
-  height: calc(100vh - 4rem);
-  padding: 0;
-}
-
-.calendar-panel {
-  flex: 0 0 300px;
-  /* float: left; */
-  min-width: 300px;
-  overflow-y: auto;
-  margin-right: 20px;
-  background-color: #f9f9f9;
-  padding: 20px;
-  align-items: flex-start;
-}
-
-.time-axis-panel {
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  padding: 10px;
-  flex-grow: 1;
-  min-width: 500px;
-  max-width: 100%;
 }
