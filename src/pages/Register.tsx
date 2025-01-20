@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import RegisterForm from "../components/registerForm/RegisterForm";
 
 type RegisterProps = {
@@ -26,11 +26,7 @@ const Register: React.FC<RegisterProps> = ({ onRegister }) => {
 
   return (
     <div className="container">
-      <h2>Register</h2>
       <RegisterForm onRegister={handleRegister} />
-      <p>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
     </div>
   );
 };

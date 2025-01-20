@@ -6,11 +6,6 @@ import { useAvatar } from "../../content/AvatarContext";
 function Navbar() {
   const navigate = useNavigate();
   const { avatarUrl } = useAvatar();
-  const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    alert("You have been logged out.");
-    navigate("/");
-  };
 
   const [isFirstLogin, setIsFirstLogin] = useState<boolean>(false);
 
@@ -32,11 +27,22 @@ function Navbar() {
     navigate("/home");
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    localStorage.setItem("isFirstLogin", "true");
+
+    alert("You have been logged out.");
+    navigate("/");
+  };
+
   return (
     <>
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <button onClick={goToHome} className="btn btn-ghost text-xl">
+          <button
+            onClick={goToHome}
+            className="btn btn-ghost text-xl flex justify-start"
+          >
             Deep Work
           </button>
         </div>
@@ -75,7 +81,9 @@ function Navbar() {
                 <a>Settings</a>
               </li>
               <li>
-                <a onClick={handleLogout}>Logout</a>
+                <Link to="/" onClick={handleLogout}>
+                  Logout
+                </Link>
               </li>
             </ul>
           </div>
