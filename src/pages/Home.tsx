@@ -1,16 +1,16 @@
 import React from "react";
 import Navbar from "../components/navbar/Navbar";
-import Calendar from "../components/Calendar/Calendar";
-import TimeAxis from "../components/TimeAxis/TimeAxis";
-import Timer from "../components/Timer/Timer";
+import Calendar from "../components/calendar/Calendar";
+import TimeAxis from "../components/timeAxis/TimeAxis";
+import Timer from "../components/timer/Timer";
 
-const TimeZone: React.FC = () => {
+const Home: React.FC = () => {
   return (
     <div className="container">
       <div className="navbar">
         <Navbar />
       </div>
-      <div className="calendar-panel">
+      <div className="calendar-panel flex min-h-screen flex-col items-center justify-between p-24">
         <Calendar />
         <Timer />
       </div>
@@ -21,4 +21,4 @@ const TimeZone: React.FC = () => {
   );
 };
 
-export default TimeZone;
+export default Home;
