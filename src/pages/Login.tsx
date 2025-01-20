@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import LoginForm from "../components/LoginForm/LoginForm";
+import LoginForm from "../components/loginForm/LoginForm";
 
 type LoginProps = {
   onLogin: (email: string, password: string) => boolean;
@@ -13,7 +13,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const handleLogin = (email: string, password: string) => {
     const success = onLogin(email, password);
     if (success) {
-      navigate("/");
+      navigate("/home");
     } else {
       setError("Invalid email or password");
     }
