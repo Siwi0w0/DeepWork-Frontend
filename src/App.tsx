@@ -4,6 +4,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Banner from "./pages/Banner";
+import ProfilePage from "./pages/Profile";
 
 const App: React.FC = () => {
   const [users, setUsers] = useState<
@@ -39,6 +40,7 @@ const App: React.FC = () => {
         />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </Router>
   );
