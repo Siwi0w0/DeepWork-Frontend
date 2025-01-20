@@ -24,7 +24,6 @@ const Home: React.FC = () => {
       <div className="time-axis-panel">
         <TimeAxis />
       </div>
-      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 };
