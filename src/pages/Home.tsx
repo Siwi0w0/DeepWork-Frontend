@@ -4,27 +4,27 @@ import Calendar from "../components/calendar/Calendar";
 import TimeAxis from "../components/timeAxis/TimeAxis";
 import Timer from "../components/timer/Timer";
 import { useNavigate } from "react-router-dom";
-import "../css/Home.css";
+import "../styles/Home.css";
+import { useEffect } from "react";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
-    navigate("/");
-  };
+  useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
+    if (!authToken) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   return (
     <div className="home-container">
       <Navbar />
       <div className="content-container">
-        {/* left: calendar & timer */}
         <div className="calendar-panel">
           <Calendar />
           <Timer />
         </div>
-
-        {/* right: time-axis */}
         <div className="time-axis-panel">
           <TimeAxis />
         </div>
