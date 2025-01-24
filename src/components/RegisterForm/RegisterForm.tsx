@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./registerForm.module.css";
+import { Link } from "react-router-dom";
 
 interface RegisterFormProps {
   onRegister: (user: {
@@ -130,7 +131,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
           <div className={styles.title}>Get Started</div>
           <div className={styles.question}>
             Already Have an Account? <br />
-            <span>Sign In</span>
+            <Link to="/login">
+              {" "}
+              <span>Sign In</span>
+            </Link>
           </div>
 
           <div className={styles.btn}>
