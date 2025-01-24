@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Navbar from "../components/banner/Navbar";
+import Navbar from "../components/banner/BannerNavbar";
 import BannerContent from "../components/banner/BannerContent";
 import "../components/banner/Banner.css";
 import { useNavigate } from "react-router-dom";
@@ -8,9 +8,9 @@ const Banner: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    if (isLoggedIn === "true") {
-      navigate("/home");
+    const authToken = localStorage.getItem("authToken");
+    if (authToken) {
+      navigate("/home", { replace: true });
     }
   }, [navigate]);
 
