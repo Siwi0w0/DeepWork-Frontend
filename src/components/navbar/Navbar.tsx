@@ -10,86 +10,64 @@ function Navbar() {
   const [isFirstLogin, setIsFirstLogin] = useState<boolean>(false);
 
   useEffect(() => {
-    // Check if it's the user's first login
     const firstLogin = localStorage.getItem("isFirstLogin");
-
     if (firstLogin === "true") {
-      setIsFirstLogin(true); // If it's the first login, show the "New" badge
+      setIsFirstLogin(true);
     }
   }, []);
 
-  const handleLogin = () => {
-    // This can be triggered after the user logs in for the first time
-    localStorage.setItem("isFirstLogin", "false"); // Set it to false after login
-  };
-
-  const goToHome = () => {
-    navigate("/home");
-  };
-
   const handleLogout = () => {
     localStorage.removeItem("authToken");
-    localStorage.setItem("isFirstLogin", "true");
-
     alert("You have been logged out.");
     navigate("/");
   };
 
   return (
-    <>
-      <div className="navbar bg-base-100">
-        <div className="flex-1">
-          <button
-            onClick={goToHome}
-            className="btn btn-ghost text-xl flex justify-start"
+    <div className="navbar bg-base-100">
+      <div className="flex-1">
+        <button
+          onClick={() => navigate("/home")}
+          className="btn btn-ghost text-xl flex justify-start"
+        >
+          Deep Work
+        </button>
+      </div>
+      <div className="flex-none">
+        <div className="dropdown dropdown-end">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost btn-circle avatar"
           >
-            Deep Work
-          </button>
-        </div>
-        <div className="flex-none">
-          <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
-              <div className="w-10 rounded-full">
-                <img
-                  alt="Tailwind CSS Navbar component"
-                  src={
-                    avatarUrl ||
-                    "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                  }
-                />
-              </div>
+            <div className="w-10 rounded-full">
+              <img
+                alt="Tailwind CSS Navbar component"
+                src={
+                  avatarUrl ||
+                  "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                }
+              />
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <Link
-                  to="/profile"
-                  className="justify-between"
-                  onClick={handleLogin}
-                >
-                  Profile
-                  {isFirstLogin && <span className="badge">New</span>}
-                </Link>
-              </li>
-              <li>
-                <a>Settings</a>
-              </li>
-              <li>
-                <Link to="/" onClick={handleLogout}>
-                  Logout
-                </Link>
-              </li>
-            </ul>
           </div>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+          >
+            <li>
+              <Link to="/profile">Profile</Link>
+            </li>
+            <li>
+              <a>Settings</a>
+            </li>
+            <li>
+              <button className="btn btn-ghost" onClick={handleLogout}>
+                Logout
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
