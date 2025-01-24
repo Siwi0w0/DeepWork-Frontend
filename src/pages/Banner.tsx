@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import Navbar from "../components/banner/BannerNavbar";
+import BannerNavbar from "../components/banner/BannerNavbar";
 import BannerContent from "../components/banner/BannerContent";
-import "../components/banner/Banner.css";
 import { useNavigate } from "react-router-dom";
 
 const Banner: React.FC = () => {
@@ -16,7 +15,7 @@ const Banner: React.FC = () => {
 
   return (
     <div className="banner-page">
-      <Navbar />
+      <BannerNavbar />
       <BannerContent />
     </div>
   );

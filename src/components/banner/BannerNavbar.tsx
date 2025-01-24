@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./BannerNavbar.css";
+import "./BannerNavbar.module.css";
 
-const Navbar: React.FC = () => {
+const BannerNavbar: React.FC = () => {
   return (
     <nav className="navbar ">
       <div className="logo">
@@ -20,4 +20,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar;
+export default BannerNavbar;
