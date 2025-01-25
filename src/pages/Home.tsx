@@ -4,7 +4,7 @@ import Calendar from "../components/Calendar/Calendar";
 import TimeAxis from "../components/TimeAxis/TimeAxis";
 import Timer from "../components/Timer/Timer";
 
-const TimeZone: React.FC = () => {
+const Home: React.FC = () => {
   return (
     <div className="container">
       <div className="navbar">
@@ -21,4 +21,4 @@ const TimeZone: React.FC = () => {
   );
 };
 
-export default TimeZone;
+export default Home;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import TimeZone from "./pages/Home";
+import Home from "./pages/Home";
 
 const App: React.FC = () => {
   const [users, setUsers] = useState<
@@ -36,7 +36,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<TimeZone />} />
+        <Route path="/" element={<Home />} />
         <Route
           path="/register"
           element={<Register onRegister={handleRegister} />}
