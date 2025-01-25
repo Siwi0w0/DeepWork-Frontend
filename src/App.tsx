@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import Banner from "./pages/Banner";
+import ProfilePage from "./pages/Profile";
+import { AvatarProvider } from "./content/AvatarContext";
+import { Navigate } from "react-router-dom";
 
 const App: React.FC = () => {
   const [users, setUsers] = useState<
@@ -22,28 +26,37 @@ const App: React.FC = () => {
     alert("Registration successful!");
   };
 
-  const handleLogin = (email: string, password: string) => {
-    const user = users.find(
-      (user) => user.email === email && user.password === password
-    );
-    if (user) {
-      alert(`Welcome back, ${user.username}!`);
-    } else {
-      alert("Invalid email or password.");
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(() => {
+    return localStorage.getItem("isLoggedIn") === "true";
+  });
+  const handleLogin = (_email: string, _password: string): boolean => {
+    const loginSuccessful = true;
+    if (loginSuccessful) {
+      localStorage.setItem("isLoggedIn", "true");
+      setIsLoggedIn(true);
+      return true;
     }
+    return false;
   };
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/register"
-          element={<Register onRegister={handleRegister} />}
-        />
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
-      </Routes>
-    </Router>
+    <AvatarProvider>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={isLoggedIn ? <Navigate to="/home" replace /> : <Banner />}
+          />
+          <Route
+            path="/register"
+            element={<Register onRegister={handleRegister} />}
+          />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/profile" element={<ProfilePage />} />
+        </Routes>
+      </Router>
+    </AvatarProvider>
   );
 };
 

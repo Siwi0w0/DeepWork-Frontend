@@ -1,15 +1,29 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import LoginForm from "../components/LoginForm/LoginForm";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import LoginForm from "../components/loginForm/LoginForm";
 
 type LoginProps = {
-  onLogin: (email: string, password: string) => void;
+  onLogin: (email: string, password: string) => boolean;
 };
 
 const Login: React.FC<LoginProps> = ({ onLogin }) => {
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
+
+  const handleLogin = (email: string, password: string) => {
+    if (onLogin(email, password)) {
+      localStorage.setItem("isLoggedIn", "true");
+      navigate("/home");
+    } else {
+      setError("Invalid email or password");
+    }
+  };
+
   return (
     <div className="container">
-      <LoginForm onLogin={onLogin} />
+      <h2>Login</h2>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      <LoginForm onLogin={handleLogin} />
       <p>
         Don't have an account? <Link to="/register">Register</Link>
       </p>
