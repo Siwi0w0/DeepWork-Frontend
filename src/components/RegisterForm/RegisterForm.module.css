@@ -91,7 +91,7 @@ input:focus {
   font-size: 15px;
 }
 
-span {
+.span {
   color: #f2796e;
   cursor: pointer;
 }
@@ -145,7 +145,7 @@ form div i {
   margin-top: 5px;
 }
 
-button {
+.submit {
   margin-top: 15px;
   width: 100%;
   height: 45px;

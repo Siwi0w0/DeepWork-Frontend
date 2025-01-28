@@ -133,7 +133,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
             Already Have an Account? <br />
             <Link to="/login">
               {" "}
-              <span>Sign In</span>
+              <span className={styles.span}>Sign In</span>
             </Link>
           </div>
 
@@ -247,7 +247,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
           <div className={styles.error}>{errors.password}</div>
         </div>
 
-        <button type="submit" className={styles.button}>
+        <button type="submit" className={styles.submit}>
           Submit
         </button>
       </form>
