@@ -8,7 +8,7 @@ export const EventForm: React.FC<eventFormProps> = ({
     onSubmit,
     onClose
 }) => {
-    // Form state
+  // Form state
     const [formData, setFormData] = useState<EventData>({
         title: '',
         start: initialDateTime || new Date(),
@@ -48,19 +48,6 @@ export const EventForm: React.FC<eventFormProps> = ({
         }
       };
 
-      return (
-        <div>
-          <div className="card bg-base-100 w-96 shadow-xl">
-  <div className="card-body">
-    <h2 className="card-title">Card title!</h2>
-    <p>If a dog chews shoes whose shoes does he choose?</p>
-    <div className="card-actions justify-end">
-      <button className="btn btn-primary">Buy Now</button>
-    </div>
-  </div>
-</div>
-        </div>
-      )
     };
 
 return (
@@ -69,7 +56,9 @@ return (
       <div className="card-body">
         <h2 className="card-title">Create New Event</h2>
 
-        <form onSubmit={handleSubmit}>
+        <form
+        className='w-full'
+        onSubmit={handleSubmit}>
           {errors.submit && (
             <div className="alert alert-error">{errors.submit}</div>
           )}
@@ -119,19 +108,6 @@ return (
                 <span className="text-error text-sm mt-1">{errors.end}</span>
               )}
             </div>
-          </div>
-
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Location</span>
-            </label>
-            <input
-              type="text"
-              name="location"
-              value={formData.location}
-              onChange={handleChange}
-              className="input input-bordered"
-            />
           </div>
 
           <div className="form-control mt-4">
