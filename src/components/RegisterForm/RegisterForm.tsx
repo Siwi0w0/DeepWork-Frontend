@@ -116,7 +116,8 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.logo}>
-          <img src="./logo.svg" alt="Logo" />
+          <div>Deep Work</div>
+          {/* <img src="./logo.svg" alt="Logo" /> */}
         </div>
         <div className={styles.imageWrapper}>
           <img src="/public/images/illustration.svg" alt="Illustration" />

@@ -21,12 +21,8 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
   return (
     <div className="container">
-      <h2>Login</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <LoginForm onLogin={handleLogin} />
-      <p>
-        Don't have an account? <Link to="/register">Register</Link>
-      </p>
     </div>
   );
 };
