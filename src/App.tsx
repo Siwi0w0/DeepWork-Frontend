@@ -3,10 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
-import Banner from "./pages/Banner";
+
 import ProfilePage from "./pages/Profile";
 import { AvatarProvider } from "./content/AvatarContext";
-import { Navigate } from "react-router-dom";
 
 const App: React.FC = () => {
   const [users, setUsers] = useState<
@@ -40,7 +39,6 @@ const App: React.FC = () => {
     <AvatarProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<Banner />} />
           <Route
             path="/register"
             element={<Register onRegister={handleRegister} />}
